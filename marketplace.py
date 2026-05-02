@@ -14,7 +14,7 @@ options.add_experimental_option("excludeSwitches", ["enable-automation"])
 
 driver = webdriver.Chrome(options=options)
 
-# ✅ Hardcode 3 produk pilihan kamu
+
 product_list = [
     {
         "url": "https://www.tokopedia.com/utamapolyflex/kaos-polos-lengan-pendek-cotton-combed-30s-premium-quality-merah-solid-s"
@@ -29,7 +29,7 @@ product_list = [
         "url": "https://www.tokopedia.com/mybasicindonesia/mybasic-boxy-crop-t-shirt-kaos-boxy-fit-with-cotton-combed-24s-dengan-200-gsm-1730149094126093896"
     }
 ]
-MAX_HALAMAN = 30  # Batasi 20 halaman per produk (~200 ulasan)
+MAX_HALAMAN = 30  
 all_data = []
 
 for i, product in enumerate(product_list):
@@ -47,18 +47,18 @@ for i, product in enumerate(product_list):
 
     soup_page = BeautifulSoup(driver.page_source, "html.parser")
 
-    # ✅ Ambil nama produk dari h1
+    #  get product name
     nama_tag = soup_page.find("h1", attrs={"data-testid": "lblPDPDetailProductName"})
     nama_produk = nama_tag.get_text(strip=True) if nama_tag else ""
 
-    # ✅ Ambil harga produk
+    # get price product
     harga_tag = soup_page.find("div", attrs={"data-testid": "lblPDPDetailProductPrice"})
     harga = harga_tag.get_text(strip=True) if harga_tag else ""
 
     print(f"Nama: {nama_produk}")
     print(f"Harga: {harga}")
 
-    # ✅ Klik tab Ulasan
+    # access review tab
     try:
         tab_ulasan = WebDriverWait(driver, 10).until(
             EC.element_to_be_clickable((By.CSS_SELECTOR, 'button[data-testid="review"]'))
@@ -85,7 +85,7 @@ for i, product in enumerate(product_list):
             break
 
         for review in reviews:
-            # ✅ Ambil rating
+            # get rating product
             rating_tag = review.find("div", attrs={"data-testid": "icnStarRating"})
             if rating_tag:
                 aria = rating_tag.get("aria-label", "")
@@ -93,7 +93,7 @@ for i, product in enumerate(product_list):
             else:
                 rating = 0
 
-            # ✅ Ambil ulasan
+            # get description review
             ulasan_tag = review.find("span", attrs={"data-testid": "lblItemUlasan"})
             if not ulasan_tag:
                 ulasan_tag = review.find("p", attrs={"data-testid": "lblItemUlasan"})
@@ -108,7 +108,7 @@ for i, product in enumerate(product_list):
                 })
                 print(f"  ⭐{rating} | {ulasan[:50]}...")
 
-        # ✅ Pindah halaman berikutnya
+        # access pagination review
         try:
             next_page = driver.find_element(
                 By.CSS_SELECTOR, f'button[aria-label="Laman {page + 1}"]'
@@ -122,7 +122,7 @@ for i, product in enumerate(product_list):
 
 driver.close()
 
-# ✅ Export ke Excel
+# export to excel
 df = pd.DataFrame(all_data, columns=["Nama Produk", "Harga", "Rating", "Ulasan"])
 df.to_excel("ulasan_kaospolos1.xlsx", index=False)
 print(f"\nSelesai! Total {len(all_data)} ulasan → ulasan_kaospolos.xlsx")
