@@ -10,16 +10,16 @@
 
 #  Tech Stack
 - Python 3.13
-- Selenium — otomasi browser untuk navigasi halaman dinamis
-- BeautifulSoup4 — parsing HTML
-- Pandas — manipulasi dan export data
-- openpyxl — export ke format Excel (.xlsx)
+- Selenium: otomasi browser untuk navigasi halaman dinamis
+- BeautifulSoup4: parsing HTML
+- Pandas: manipulasi dan export data
+- openpyxl: export ke format Excel (.xlsx)
 - Google Chrome + ChromeDriver
 
 
 # Struktur Dataset
 Dataset hasil scraping disimpan dalam format .xlsx dengan 4 kolom:
-1. Nama Produk
-2. Harga
-3. Rating
-4. Ulasan
+- Nama Produk
+- Harga
+- Rating
+- Ulasan
