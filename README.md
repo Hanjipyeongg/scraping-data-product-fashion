@@ -1,5 +1,5 @@
 # Tokopedia Product Review Scraper
-## Proyek ini merupakan web scraping ulasan produk dari platform Tokopedia menggunakan Python. Data yang dikumpulkan meliputi nama produk, harga, rating bintang, dan deskripsi ulasan pembeli yang selanjutnya akan digunakan untuk analisis teks seperti tokenizing, filtering, dan stemming.
+### Proyek ini merupakan web scraping ulasan produk dari platform Tokopedia menggunakan Python. Data yang dikumpulkan meliputi nama produk, harga, rating bintang, dan deskripsi ulasan pembeli yang selanjutnya akan digunakan untuk analisis teks seperti tokenizing, filtering, dan stemming.
 
 # Tujuan Proyek
 ### Mengumpulkan data ulasan produk kaos polos dari Tokopedia secara otomatis untuk keperluan:
